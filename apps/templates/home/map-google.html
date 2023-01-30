@@ -9,25 +9,47 @@
 
 <!-- [ Main Content ] start -->
 <section class="pcoded-main-container">
+
     <div id="gridmaps">
-        <!-- <iframe id="eivissa" width="425" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=1.0615539550781252%2C38.76667409456986%2C1.6788482666015627%2C39.02185930525858&amp;layer=mapnik">
-        </iframe>
-        <iframe id="mallorca" width="850" height="800" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=2.475357055664063%2C39.344373905777%2C3.469619750976563%2C39.84965314551508&amp;layer=mapnik">
-        </iframe>
-        <iframe id="menorca" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=3.8249588012695317%2C39.82119113299654%2C4.322090148925782%2C40.07255143152009&amp;layer=mapnik">
-        </iframe> -->
 
         <!-- Leaflet Maps Start -->
+
         <div id="mallorca"></div>
+        <div id="menorca"></div>
+        <div id="eivissa"></div>
+
         <script>
+
             var mallorca = L.map('mallorca').setView([39.6, 2.9], 10);
+            
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(mallorca);
+
+            /* Legend Start */
+            
+            // var legend = L.control({ position: 'bottomleft' });
+
+            // legend.onAdd = function (mallorca) {
+            //     var div = L.DomUtil.create('div', 'info legend');
+            //     categories = ['Hydrological', 'Meteorological', 'Hydrometeorological'];
+            // }
+
+            var legend = L.control({ position: "bottomleft" });
+
+            legend.onAdd = function (mallorca) {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML += "<h4>Type</h4>";
+                div.innerHTML += '<i style="background: red"></i><span>Meteorological</span><br>';
+                div.innerHTML += '<i style="background: blue"></i><span>Hydrological</span><br>';
+                div.innerHTML += '<i style="background: orange"></i><span>Hydrometeorological</span><br>';
+                return div;
+            };
+
+            legend.addTo(mallorca);
+
+            /* Legend End */
 
             var marker = L.marker([39.6435, 2.9251]).addTo(mallorca);
 
@@ -45,24 +67,23 @@
                 );
             });
 
-        </script>
-        <div id="menorca"></div>
-        <script>
             var menorca = L.map('menorca').setView([39.95, 4.05], 10);
+
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(menorca);
-        </script>
-        <div id="eivissa"></div>
-        <script>
+
             var eivissa = L.map('eivissa').setView([38.8199, 1.5326], 10);
+
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(eivissa);
+
         </script>
         <!-- Leaflet Maps End -->
+
 </section>
 <!-- [ Main Content ] end -->
 

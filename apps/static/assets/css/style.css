@@ -10571,6 +10571,7 @@ div.code-toolbar > .toolbar span:hover {
 }
 
 #gridmaps {
+  position: relative;
   padding: 50px;
   padding-top: -50px;
   display: grid;
@@ -10580,7 +10581,7 @@ div.code-toolbar > .toolbar span:hover {
 }
 
 #eivissa {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: 425px;
   height: 400px;
   padding-bottom: 100px;
@@ -10589,7 +10590,7 @@ div.code-toolbar > .toolbar span:hover {
 }
 
 #mallorca {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: 850px;
   height: 800px;
   grid-column-start: 1;
@@ -10597,7 +10598,7 @@ div.code-toolbar > .toolbar span:hover {
 }
 
 #menorca {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   width: 425px;
   height: 350px;
   grid-column-start: 2;
