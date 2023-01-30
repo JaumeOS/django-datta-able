@@ -7,21 +7,21 @@ $(document).ready(function() {
         lng: 72.866472,
         scrollwheel: false
     });
-    var map;
-    map = new GMaps({
-        el: '#markers-map',
-        lat: 21.2334329,
-        lng: 72.866472,
-        scrollwheel: false
-    });
-    map.addMarker({
-        lat: 21.2334329,
-        lng: 72.866472,
-        title: 'Marker with InfoWindow',
-        infoWindow: {
-            content: '<p><Phoenicoded></Phoenicoded> <br/> Buy Now at <a href="">Themeforest</a></p>'
-        }
-    });
+    // var map;
+    // map = new GMaps({
+    //     el: '#markers-map',
+    //     lat: 21.2334329,
+    //     lng: 72.866472,
+    //     scrollwheel: false
+    // });
+    // map.addMarker({
+    //     lat: 21.2334329,
+    //     lng: 72.866472,
+    //     title: 'Marker with InfoWindow',
+    //     infoWindow: {
+    //         content: '<p><Phoenicoded></Phoenicoded> <br/> Buy Now at <a href="">Themeforest</a></p>'
+    //     }
+    // });
     var mapOverlay;
     mapOverlay = new GMaps({
         el: '#mapOverlay',
@@ -90,13 +90,13 @@ $(document).ready(function() {
         url: 'http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss'
     });
     georssLayer.setMap(georssmap);
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: {
-            lat: 21.2334329,
-            lng: 72.866472
-        }
-    });
+    // var map = new google.maps.Map(document.getElementById('map'), {
+    //     zoom: 6,
+    //     center: {
+    //         lat: 21.2334329,
+    //         lng: 72.866472
+    //     }
+    // });
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var markers = locations.map(function(location, i) {
         return new google.maps.Marker({
@@ -108,6 +108,9 @@ $(document).ready(function() {
         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
     });
 });
+
+var map = L.map('map').setView([51.505, -0.09], 13);
+
 var locations = [{
     lat: 21.1702401,
     lng: 72.8310607

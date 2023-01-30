@@ -2807,9 +2807,10 @@ p.text-muted {
 /* menu [ horizontal ] css end */
 /* main content start */
 .pcoded-content {
-  position: relative;
-  display: block;
-  padding: 30px;
+  position: absolute;
+  display: flex;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .pcoded-main-container {
@@ -10567,6 +10568,40 @@ div.code-toolbar > .toolbar span:hover {
 .fixed-button.active {
 	bottom: 50px;
 	opacity: 1
+}
+
+#gridmaps {
+  padding: 50px;
+  padding-top: -50px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, 950px);
+  grid-template-rows: repeat(2, 400px);
+}
+
+#eivissa {
+  /* border: 1px solid black; */
+  width: 425px;
+  height: 400px;
+  padding-bottom: 100px;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+#mallorca {
+  /* border: 1px solid black; */
+  width: 850px;
+  height: 800px;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+#menorca {
+  /* border: 1px solid black; */
+  width: 425px;
+  height: 350px;
+  grid-column-start: 2;
+  grid-row-start: 1;
 }
 
 @-webkit-keyframes pulse {
