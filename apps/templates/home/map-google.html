@@ -3,11 +3,13 @@
 {% block title %} Dashboard {% endblock %}
 
 <!-- Specific CSS goes HERE -->
+
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
 <!-- [ Main Content ] start -->
+
 <section class="pcoded-main-container">
     <div class="pcoded-wrapper">
 
@@ -15,93 +17,42 @@
             <div class="pcoded-inner-content">
                 <div class="main-body">
                     <div class="page-wrapper">
-                        <!-- [ Main Content ] start -->
+                        <!-- Leaflet Maps Start -->
                         <div class="row">
-                            
                             <div class="col-md-8">
                                 <div id="mallorca"></div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="pb-3">
-                                    <div id="menorca"></div>                        
-                                    <div><br/></div>
+                                    <div id="menorca"></div>
+                                    <div><br /></div>
                                     <div id="eivissa"></div>
                                 </div>
                             </div>
-
                         </div>
-                        <!-- [ Main Content ] end -->
+                        <!-- Leaflet Maps End -->
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <!-- Leaflet Maps Start -->
-    <!-- <div id="gridmaps"></div> -->
-    <!-- Leaflet Maps End -->
 
 </section>
+
 <!-- [ Main Content ] end -->
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}
 
-<!-- google-map Js -->
+{% block javascripts %}
 
 <!-- Leaflet -->
 <script>
 
-    var mallorca = L.map('mallorca').setView([39.6, 2.9], 10);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(mallorca);
-
-    /* Legend Start */
-
-    // var legend = L.control({ position: 'bottomright' });
-
-    // legend.onAdd = function (mallorca) {
-    //     var div = L.DomUtil.create('div', 'info legend');
-    //     categories = ['Hydrological', 'Meteorological', 'Hydrometeorological'];
-    // }
-
-    var legend = L.control({ position: "bottomleft" });
-
-    legend.onAdd = function (mallorca) {
-        var div = L.DomUtil.create("div", "legend");
-        categories = ['Hydro', 'Meteoro', 'Hydrometeo'];
-        div.innerHTML += "<h4>Type</h4>";
-        div.innerHTML += '<i style="background: red"></i><span>Meteorological</span><br>';
-        div.innerHTML += '<i style="background: blue"></i><span>Hydrological</span><br>';
-        div.innerHTML += '<i style="background: orange"></i><span>Hydrometeorological</span><br>';
-        return div;
-    };
-
-    legend.addTo(mallorca);
-
-    /* Legend End */
-
-    var marker = L.marker([39.6435, 2.9251]).addTo(mallorca);
-
-    marker.on('mouseover', function (ev) {
-        let layer = ev.target;
-
-        let popup = layer.openPopup(open('url', 'windowName', 'height=300,width=300').document.write('html to write...'));
-        layer.openPopup(ev.latlng)
-    });
-
-    marker.on('mouseout', function (ev) {
-        let layer = ev.target;
-
-        layer.openPopup(close('url', 'windowName', 'height=300,width=300')
-        );
-    });
+    /* Maps Start */
 
     var menorca = L.map('menorca').setView([39.95, 4.05], 10);
 
@@ -117,6 +68,64 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(eivissa);
 
+    var mallorca = L.map('mallorca').setView([39.6, 2.9], 10);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mallorca);
+
+    /* Maps End */
+
+
+    /* Markers Start */
+
+    var marker = L.marker([39.5, 2.75]).addTo(mallorca);
+    // marker.bindPopup("Hello World").openPopup();
+    marker.on('mouseover', function (e) {
+        this.openPopup();
+    });
+    marker.on('mouseout', function (e) {
+        this.closePopup();
+    });
+
+    var incaCity = [[39.6817, 2.9325], [39.7369, 2.9187], [39.7246, 2.8716], [39.6775, 2.8835]];
+    var incaPolygon = L.polygon(incaCity, { color: 'red' }).addTo(mallorca);
+
+    /* Markers End */
+
+
+    /* Legends Start */
+
+    var legendTypeEstacion = L.control({ position: "bottomleft" });
+
+    legendTypeEstacion.onAdd = function (mallorca) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h4>Tipo Estació</h4>";
+        div.innerHTML += '<i></i><div style="background-color: red;">Meteo</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: blue;">Hydro</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: orange;">Hydrometeo</div><br>';
+        return div;
+    };
+
+    legendTypeEstacion.addTo(mallorca);
+
+    var legendAlertaLevel = L.control({ position: "bottomright" });
+
+    legendAlertaLevel.onAdd = function (mallorca) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h4>Nivell Alertes</h4>";
+        div.innerHTML += '<i></i><div style="background-color: grey; color: black;">Normal</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: yellow; color: black;">Alerta 1</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: orange; color: black;">Alerta 2</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: red; color: black;">Alerta 3</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: purple; color: black;">Crítico</div><br>';
+        return div;
+    };
+
+    legendAlertaLevel.addTo(mallorca);
+
+    /* Legends End */
 </script>
 
 {% endblock javascripts %}
