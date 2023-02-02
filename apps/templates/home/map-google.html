@@ -11,25 +11,24 @@
 <!-- [ Main Content ] start -->
 
 <section class="pcoded-main-container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="pb-3">
+                <div id="menorca"></div>
+                <!-- <div><br/></div> -->
+                <div id="eivissa"></div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="mallorca"></div>
+        </div>
+    </div>
     <div class="pcoded-wrapper">
         <div class="pcoded-content">
             <div class="pcoded-inner-content">
                 <div class="main-body">
                     <div class="page-wrapper">
                         <!-- Leaflet Maps Start -->
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <div class="pb-3">
-                                    <div id="menorca"></div>
-                                    <!-- <div><br/></div> -->
-                                    <div id="eivissa"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div id="mallorca"></div>
-                            </div>
-                        </div>
                         <!-- Leaflet Maps End -->
                     </div>
                 </div>
@@ -77,13 +76,23 @@
 
     var mallorca = L.map('mallorca').setView([39.6, 2.9], 10);
 
+    // L.orientedMarker.addTo(mallorca);
+
+    var marker = L.marker([39.6, 2.9]).addTo(mallorca);
+    
+    // marker.activateOrientation();
+    // marker.validateOrientation();
+    // marker.addTo(mallorca);
+
+    L.control.scale().addTo(mallorca);
+
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mallorca);
 
     var legendTypeEstacion = L.control({ position: "bottomleft" });
-    
+
     legendTypeEstacion.onAdd = function (mallorca) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>Tipo Estació</h4>";
@@ -92,11 +101,11 @@
         div.innerHTML += '<i></i><div style="background-color: orange; color: white;">Hydrometeo</div><br>';
         return div;
     };
-    
+
     legendTypeEstacion.addTo(mallorca);
-    
+
     var legendAlertaLevel = L.control({ position: "bottomright" });
-    
+
     legendAlertaLevel.onAdd = function (mallorca) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>Nivell Alertes</h4>";
@@ -107,11 +116,11 @@
         div.innerHTML += '<i></i><div style="background-color: purple; color: black;">Crítico</div><br>';
         return div;
     };
-    
+
     legendAlertaLevel.addTo(mallorca);
-    
+
     /* Legends End */
-    
+
     /* Mallorca End */
 </script>
 
