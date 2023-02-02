@@ -19,16 +19,16 @@
                     <div class="page-wrapper">
                         <!-- Leaflet Maps Start -->
                         <div class="row">
-                            <div class="col-md-8">
-                                <div id="mallorca"></div>
-                            </div>
 
                             <div class="col-md-4">
                                 <div class="pb-3">
                                     <div id="menorca"></div>
-                                    <div><br /></div>
+                                    <!-- <div><br/></div> -->
                                     <div id="eivissa"></div>
                                 </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div id="mallorca"></div>
                             </div>
                         </div>
                         <!-- Leaflet Maps End -->
@@ -52,7 +52,7 @@
 <!-- Leaflet -->
 <script>
 
-    /* Maps Start */
+    /* Menorca Start */
 
     var menorca = L.map('menorca').setView([39.95, 4.05], 10);
 
@@ -61,12 +61,20 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(menorca);
 
-    var eivissa = L.map('eivissa').setView([38.8199, 1.5326], 10);
+    /* Menorca End */
+
+    /* Eivissa Start */
+
+    var eivissa = L.map('eivissa').setView([38.95, 1.4], 10);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(eivissa);
+
+    /* Eivissa End */
+
+    /* Mallorca Start */
 
     var mallorca = L.map('mallorca').setView([39.6, 2.9], 10);
 
@@ -75,43 +83,21 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mallorca);
 
-    /* Maps End */
-
-
-    /* Markers Start */
-
-    var marker = L.marker([39.5, 2.75]).addTo(mallorca);
-    // marker.bindPopup("Hello World").openPopup();
-    marker.on('mouseover', function (e) {
-        this.openPopup();
-    });
-    marker.on('mouseout', function (e) {
-        this.closePopup();
-    });
-
-    var incaCity = [[39.6817, 2.9325], [39.7369, 2.9187], [39.7246, 2.8716], [39.6775, 2.8835]];
-    var incaPolygon = L.polygon(incaCity, { color: 'red' }).addTo(mallorca);
-
-    /* Markers End */
-
-
-    /* Legends Start */
-
     var legendTypeEstacion = L.control({ position: "bottomleft" });
-
+    
     legendTypeEstacion.onAdd = function (mallorca) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>Tipo Estació</h4>";
-        div.innerHTML += '<i></i><div style="background-color: red;">Meteo</div><br>';
-        div.innerHTML += '<i></i><div style="background-color: blue;">Hydro</div><br>';
-        div.innerHTML += '<i></i><div style="background-color: orange;">Hydrometeo</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: red; color: white;">Meteo</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: blue; color: white;">Hydro</div><br>';
+        div.innerHTML += '<i></i><div style="background-color: orange; color: white;">Hydrometeo</div><br>';
         return div;
     };
-
+    
     legendTypeEstacion.addTo(mallorca);
-
+    
     var legendAlertaLevel = L.control({ position: "bottomright" });
-
+    
     legendAlertaLevel.onAdd = function (mallorca) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>Nivell Alertes</h4>";
@@ -122,10 +108,12 @@
         div.innerHTML += '<i></i><div style="background-color: purple; color: black;">Crítico</div><br>';
         return div;
     };
-
+    
     legendAlertaLevel.addTo(mallorca);
-
+    
     /* Legends End */
+    
+    /* Mallorca End */
 </script>
 
 {% endblock javascripts %}

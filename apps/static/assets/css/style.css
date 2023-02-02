@@ -12802,20 +12802,22 @@ div.code-toolbar>.toolbar span:hover {
   grid-template-rows: repeat(2, 400px);
 } */
 
+.page-wrapper {
+  
+}
+
 #eivissa {
-  border: 1px solid black;
   width: 425px;
-  height: 400px;
+  height: 550px;
 }
 
 #mallorca {
-  border: 1px solid black;
-  width: 850px;
-  height: 800px;
+  margin-left: -50px;
+  width: 1000px;
+  height: 900px;
 }
 
 #menorca {
-  border: 1px solid black;
   width: 425px;
   height: 350px;
 }
