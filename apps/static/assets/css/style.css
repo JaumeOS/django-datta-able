@@ -2345,6 +2345,7 @@ p.text-muted {
   top: 0;
   background: #3f4d67;
   color: #a9b7d0;
+  navbar-collapsed: true;
 }
 
 .pcoded-navbar ul {
@@ -12792,18 +12793,8 @@ div.code-toolbar>.toolbar span:hover {
   opacity: 1
 }
 
-/* #gridmaps {
-  position: relative;
-  padding: 50px;
-  padding-top: -50px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(2, 950px);
-  grid-template-rows: repeat(2, 400px);
-} */
-
 .page-wrapper {
-  
+  position: center;
 }
 
 #eivissa {
@@ -12812,7 +12803,7 @@ div.code-toolbar>.toolbar span:hover {
 }
 
 #mallorca {
-  margin-left: -50px;
+  margin-left: -60px;
   width: 1000px;
   height: 900px;
 }
