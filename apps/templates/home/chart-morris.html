@@ -1,131 +1,80 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Charts {% endblock %} 
+{% block title %} Charts {% endblock %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
-    <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
-
-            <div class="pcoded-content">
-                <div class="pcoded-inner-content">
-                    <!-- [ breadcrumb ] start -->
-                    <div class="page-header">
-                        <div class="page-block">
-                            <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="page-header-title">
-                                        <h5 class="m-b-10">Morris Chart</h5>
-                                    </div>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Chart</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Morris Chart</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- [ breadcrumb ] end -->
-                    <div class="main-body">
-                        <div class="page-wrapper">
-                            <!-- [ Main Content ] start -->
-                            <div class="row">
-                                <!-- [ Morris Chart ] start -->
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Bar [ Simple ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-bar-chart" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Bar [ Stacked ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-bar-stacked-chart" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Line [ Angle ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-area-chart" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Area [ Smooth ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-area-curved-chart" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Line [ Angle ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-line-chart" class="ChartShadow" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Line [ Smooth ] Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-line-smooth-chart" class="ChartShadow" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Donut Chart</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div id="morris-donut-chart" style="height:300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ Morris Chart ] end -->
-                            </div>
-                            <!-- [ Main Content ] end -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div>
+        <div id="chart" style="width: 600px; margin: 35px auto"></div>
+        <div id="chart2" style="width: 600px; margin: 35px auto"></div>
     </div>
-    <!-- [ Main Content ] end -->
+    <script>
+        var options = {
+            series: [27],
+            chart: {
+                height: 350,
+                type: 'radialBar',
+                offsetY: -10
+            },
+            plotOptions: {
+                radialBar: {
+                    startAngle: -135,
+                    endAngle: 135,
+                    dataLabels: {
+                        name: {
+                            fontSize: '16px',
+                            color: undefined,
+                            offsetY: 120
+                        },
+                        value: {
+                            offsetY: 76,
+                            fontSize: '22px',
+                            color: undefined,
+                            formatter: function (val) {
+                                return val + "%";
+                            }
+                        }
+                    }
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    shadeIntensity: 0.15,
+                    inverseColors: false,
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 50, 65, 91]
+                },
+            },
+            stroke: {
+                dashArray: 4
+            },
+            labels: ['Median Ratio'],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart2 = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+        chart2.render();
+    </script>
+</div>
+<!-- [ Main Content ] end -->
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
-    <!-- chart-morris Js -->
-    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/raphael.min.js"></script>
-    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/morris.min.js"></script>
-    <script src="{{ ASSETS_ROOT }}/js/pages/chart-morris-custom.js"></script>
+<!-- chart-morris Js -->
+<script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/raphael.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/morris.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/js/pages/chart-morris-custom.js"></script>
 
 {% endblock javascripts %}

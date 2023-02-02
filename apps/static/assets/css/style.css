@@ -12792,38 +12792,34 @@ div.code-toolbar>.toolbar span:hover {
   opacity: 1
 }
 
-#gridmaps {
+/* #gridmaps {
+  position: relative;
   padding: 50px;
   padding-top: -50px;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(2, 950px);
   grid-template-rows: repeat(2, 400px);
+} */
+
+.page-wrapper {
+  
 }
 
 #eivissa {
-  /* border: 1px solid black; */
   width: 425px;
-  height: 400px;
-  padding-bottom: 100px;
-  grid-column-start: 2;
-  grid-row-start: 2;
+  height: 550px;
 }
 
 #mallorca {
-  /* border: 1px solid black; */
-  width: 850px;
-  height: 800px;
-  grid-column-start: 1;
-  grid-row-start: 1;
+  margin-left: -50px;
+  width: 1000px;
+  height: 900px;
 }
 
 #menorca {
-  /* border: 1px solid black; */
   width: 425px;
   height: 350px;
-  grid-column-start: 2;
-  grid-row-start: 1;
 }
 
 @-webkit-keyframes pulse {
